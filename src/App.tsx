@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { CurrentWeather } from './components/CurrentWeather';
 import { Forecast } from './components/Forecast';
@@ -11,6 +11,10 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [locationName, setLocationName] = useState<string>('');
+
+  useEffect(() => {
+    searchCity('Vancouver');
+  }, []);
 
   const searchCity = async (city: string) => {
     setIsLoading(true);
